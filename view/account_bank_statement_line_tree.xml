@@ -1,0 +1,5 @@
+<data>
+    <xpath expr="/tree/field[@name='reconciled']" position="after">
+        <field name="user"/>
+    </xpath>
+</data>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tryton>
+    <data>
+        <!-- Groups -->
+        <record model="res.group" id="group_account_bank_statement_user">
+            <field name="name">Account Bank Statement User</field>
+        </record>
+        <record model="ir.rule.group" id="rule_group">
+            <field name="name">Assigned Statement Lines Only</field>
+            <field name="global_p" eval="False"/>
+            <field name="model" search="[('model', '=', 'account.bank.statement.line')]"/>
+        </record>
+        <record model="ir.rule" id="rule">
+            <field name="rule_group" ref="rule_group"/>
+            <field name="domain">[('user', '=', user.id)]</field>
+        </record>
+        <record model="ir.rule.group-res.group" id="rule_group_res_group">
+            <field name="rule_group" ref="rule_group"/>
+            <field name="group" ref="group_account_bank_statement_user"/>
+        </record>
+
+        <!-- views -->
+        <record model="ir.ui.view" id="account_bank_statement_line_form_view">
+            <field name="model">account.bank.statement.line</field>
+            <field name="type">form</field>
+            <field name="name">account_bank_statement_line_form</field>
+            <field name="inherit"
+                ref="account_bank_statement.account_bank_statement_line_form_view"/>
+        </record>
+        <record model="ir.ui.view" id="account_bank_statement_line_tree_view">
+            <field name="model">account.bank.statement.line</field>
+            <field name="type">tree</field>
+            <field name="name">account_bank_statement_line_tree</field>
+            <field name="inherit"
+                ref="account_bank_statement.account_bank_statement_line_tree_view"/>
+        </record>
+    </data>
+</tryton>
